@@ -1,0 +1,1338 @@
+ <!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Deep Winter — Visual Combination Guide for Cesar</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+/* ============================================
+   LIGHT THEME — explicit, no variable surprises
+   Background: warm cream (#F5F1EA)
+   Text: near-black (#1A1411)
+   ============================================ */
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+html, body {
+  background-color: #F5F1EA !important;
+  color: #1A1411 !important;
+}
+body{
+  font-family:'Inter',sans-serif;
+  font-weight:400;
+  line-height:1.55;
+  -webkit-font-smoothing:antialiased;
+  overflow-x:hidden;
+  min-height:100vh;
+}
+.container{max-width:1280px;margin:0 auto;padding:0 32px}
+
+/* ============= HERO ============= */
+.hero{
+background-color:#F5F1EA;
+color:#1A1411;
+min-height:80vh;
+display:flex;
+flex-direction:column;
+justify-content:center;
+padding:80px 0 60px;
+border-bottom:1px solid #1A1411;
+position:relative;
+}
+.hero-tag{
+font-family:‘JetBrains Mono’,monospace;
+font-size:11px;
+letter-spacing:0.3em;
+text-transform:uppercase;
+color:#5A4A3F;
+margin-bottom:32px;
+display:flex;
+align-items:center;
+gap:16px;
+}
+.hero-tag::before{content:’’;width:40px;height:1px;background:#1A1411}
+.hero h1{
+font-family:‘Cormorant Garamond’,serif;
+font-weight:500;
+font-size:clamp(56px,11vw,150px);
+line-height:0.92;
+letter-spacing:-0.04em;
+margin-bottom:24px;
+color:#1A1411;
+}
+.hero h1 em{font-style:italic;color:#5E1A2B;font-weight:400}
+.hero-sub{
+font-family:‘Cormorant Garamond’,serif;
+font-style:italic;
+font-size:clamp(20px,2.4vw,30px);
+color:#3A2E26;
+max-width:720px;
+margin-bottom:48px;
+}
+.hero-meta{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
+gap:32px;
+max-width:900px;
+border-top:1px solid #1A1411;
+padding-top:32px;
+}
+.hero-meta div{font-family:‘JetBrains Mono’,monospace;font-size:11px;letter-spacing:0.15em;text-transform:uppercase;color:#1A1411}
+.hero-meta div span{display:block;color:#5A4A3F;margin-bottom:4px;font-size:10px}
+.hero-meta div strong{font-weight:500;font-size:13px;color:#1A1411}
+.hero-circles{position:absolute;right:32px;top:80px;display:flex;gap:8px}
+.hero-circles span{width:14px;height:14px;border-radius:50%;border:1px solid rgba(0,0,0,0.15)}
+
+/* ============= SECTIONS ============= */
+section{
+background-color:#F5F1EA;
+color:#1A1411;
+padding:100px 0;
+border-bottom:1px solid #1A1411;
+}
+.section-num{
+font-family:‘JetBrains Mono’,monospace;
+font-size:11px;
+letter-spacing:0.3em;
+color:#5A4A3F;
+margin-bottom:16px;
+text-transform:uppercase;
+}
+.section-title{
+font-family:‘Cormorant Garamond’,serif;
+font-weight:500;
+font-size:clamp(40px,6vw,80px);
+line-height:0.95;
+letter-spacing:-0.03em;
+margin-bottom:24px;
+max-width:900px;
+color:#1A1411;
+}
+.section-title em{font-style:italic;color:#5E1A2B}
+.section-intro{
+font-size:16px;
+color:#3A2E26;
+max-width:680px;
+margin-bottom:60px;
+line-height:1.7;
+}
+
+/* ============= CONTENTS / TOC — light & readable ============= */
+.toc{
+background-color:#EDE6DA !important;
+color:#1A1411 !important;
+padding:80px 0;
+border-bottom:1px solid #1A1411;
+}
+.toc .section-num{color:#5A4A3F !important}
+.toc .section-title{color:#1A1411 !important}
+.toc-list{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+gap:0;
+border-top:1px solid rgba(26,20,17,0.25);
+margin-top:40px;
+}
+.toc-item{
+padding:24px 0;
+border-bottom:1px solid rgba(26,20,17,0.18);
+display:flex;
+align-items:baseline;
+gap:20px;
+text-decoration:none;
+color:#1A1411 !important;
+transition:padding-left 0.3s,background 0.3s,color 0.3s;
+}
+.toc-item:hover{padding-left:24px;background:rgba(94,26,43,0.08);color:#5E1A2B !important}
+.toc-num{
+font-family:‘JetBrains Mono’,monospace;
+font-size:11px;
+color:#5E1A2B !important;
+flex-shrink:0;
+font-weight:500;
+}
+.toc-name{
+font-family:‘Cormorant Garamond’,serif;
+font-size:22px;
+font-weight:500;
+color:#1A1411 !important;
+}
+.toc-item:hover .toc-name{color:#5E1A2B !important}
+
+/* ============= PALETTE SWATCHES ============= */
+.palette-grid{
+display:grid;
+grid-template-columns:repeat(auto-fill,minmax(140px,1fr));
+gap:2px;
+margin-bottom:60px;
+border:1px solid #1A1411;
+background:#1A1411;
+}
+.swatch-block{
+aspect-ratio:1;
+display:flex;
+align-items:flex-end;
+padding:12px;
+transition:transform 0.4s cubic-bezier(0.16,1,0.3,1);
+position:relative;
+}
+.swatch-block:hover{transform:scale(1.04);z-index:5;box-shadow:0 12px 40px rgba(0,0,0,0.25)}
+.swatch-info{
+font-family:‘JetBrains Mono’,monospace;
+font-size:9px;
+letter-spacing:0.1em;
+text-transform:uppercase;
+line-height:1.4;
+}
+.swatch-info .name{display:block;margin-bottom:2px;font-weight:500}
+.swatch-info .hex{opacity:0.85}
+.light-text,.light-text *{color:#FFFFFF !important}
+.dark-text,.dark-text *{color:#1A1411 !important}
+
+.palette-category{margin-bottom:60px}
+.palette-category h3{
+font-family:‘Cormorant Garamond’,serif;
+font-style:italic;
+font-weight:400;
+font-size:28px;
+margin-bottom:20px;
+display:flex;
+align-items:baseline;
+gap:16px;
+color:#1A1411;
+}
+.palette-category h3::after{content:’’;flex:1;height:1px;background:#1A1411;opacity:0.3}
+
+/* ============= COMBO CARDS ============= */
+.combo-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:24px}
+.combo-card{
+background:#FFFFFF;
+border:1px solid rgba(26,20,17,0.15);
+overflow:hidden;
+transition:all 0.4s cubic-bezier(0.16,1,0.3,1);
+}
+.combo-card:hover{
+transform:translateY(-4px);
+box-shadow:0 20px 50px rgba(0,0,0,0.12);
+border-color:#1A1411;
+}
+.combo-stripes{height:140px;display:flex}
+.combo-stripes div{flex:1}
+.combo-card-body{
+padding:18px 20px 22px;
+background:#FFFFFF;
+}
+.combo-num{
+font-family:‘JetBrains Mono’,monospace;
+font-size:10px;
+letter-spacing:0.15em;
+color:#5A4A3F;
+margin-bottom:6px;
+}
+.combo-name{
+font-family:‘Cormorant Garamond’,serif;
+font-weight:500;
+font-size:19px;
+line-height:1.2;
+margin-bottom:8px;
+letter-spacing:-0.01em;
+color:#1A1411;
+}
+.combo-recipe{
+font-size:12.5px;
+color:#3A2E26;
+line-height:1.5;
+}
+.combo-recipe strong{color:#1A1411;font-weight:500}
+
+/* ============= OUTFIT STACKS (suit cards) ============= */
+.outfit-stack{
+height:200px;
+display:flex;
+flex-direction:column;
+background:#EDE6DA;
+}
+.outfit-stack .layer{
+flex:1;
+position:relative;
+border-bottom:1px solid rgba(255,255,255,0.08);
+}
+.outfit-stack .layer:last-child{border-bottom:none}
+.outfit-stack .layer::after{
+content:attr(data-label);
+position:absolute;
+right:10px;
+top:50%;
+transform:translateY(-50%);
+font-family:‘JetBrains Mono’,monospace;
+font-size:8px;
+letter-spacing:0.15em;
+text-transform:uppercase;
+color:rgba(255,255,255,0.7);
+}
+
+/* ============= AVOID BLOCK ============= */
+.avoid-block{
+background:#FFFFFF;
+border:1px solid #1A1411;
+padding:40px;
+margin-top:40px;
+}
+.avoid-block h3{
+font-family:‘Cormorant Garamond’,serif;
+font-weight:500;
+font-size:24px;
+margin-bottom:16px;
+margin-top:32px;
+color:#1A1411;
+}
+.avoid-block h3:first-child{margin-top:0}
+.avoid-grid{
+display:grid;
+grid-template-columns:repeat(auto-fill,minmax(120px,1fr));
+gap:12px;
+margin-top:24px;
+}
+.avoid-swatch{aspect-ratio:1;position:relative;border:1px solid rgba(26,20,17,0.15)}
+.avoid-swatch::after{
+content:’’;
+position:absolute;
+inset:0;
+background:linear-gradient(to top right,transparent calc(50% - 1px),rgba(0,0,0,0.5) 50%,transparent calc(50% + 1px));
+}
+.avoid-swatch span{
+position:absolute;
+bottom:6px;
+left:8px;
+font-family:‘JetBrains Mono’,monospace;
+font-size:8px;
+letter-spacing:0.1em;
+text-transform:uppercase;
+color:#FFFFFF;
+text-shadow:0 1px 2px rgba(0,0,0,0.7);
+}
+
+/* ============= PRINCIPLES ============= */
+.principles{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+gap:1px;
+background:#1A1411;
+border:1px solid #1A1411;
+margin-top:40px;
+}
+.principle{
+background:#FFFFFF;
+padding:32px;
+color:#1A1411;
+}
+.principle-num{
+font-family:‘Cormorant Garamond’,serif;
+font-style:italic;
+font-size:48px;
+color:#5E1A2B;
+line-height:1;
+margin-bottom:16px;
+}
+.principle h4{
+font-family:‘Cormorant Garamond’,serif;
+font-weight:500;
+font-size:22px;
+margin-bottom:12px;
+color:#1A1411;
+}
+.principle p{font-size:14px;color:#3A2E26;line-height:1.6}
+
+/* ============= FOOTER — light ============= */
+footer{
+background-color:#EDE6DA !important;
+color:#1A1411 !important;
+padding:80px 0 40px;
+border-top:1px solid #1A1411;
+}
+footer .container{
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:60px;
+align-items:end;
+}
+footer h2{
+font-family:‘Cormorant Garamond’,serif;
+font-weight:400;
+font-size:clamp(40px,5vw,68px);
+line-height:0.95;
+letter-spacing:-0.02em;
+color:#1A1411 !important;
+}
+footer h2 em{font-style:italic;color:#5E1A2B !important}
+footer .sub{
+font-family:‘JetBrains Mono’,monospace;
+font-size:11px;
+letter-spacing:0.15em;
+line-height:2;
+text-transform:uppercase;
+color:#3A2E26 !important;
+}
+footer .copy{
+font-family:‘JetBrains Mono’,monospace;
+font-size:10px;
+letter-spacing:0.2em;
+text-transform:uppercase;
+color:#5A4A3F !important;
+margin-top:60px;
+grid-column:1/-1;
+border-top:1px solid rgba(26,20,17,0.25);
+padding-top:24px;
+}
+
+/* ============= CATEGORY DIVIDER ============= */
+.category-divider{display:flex;align-items:center;gap:24px;margin:60px 0 32px}
+.category-divider .label{
+font-family:‘JetBrains Mono’,monospace;
+font-size:11px;
+letter-spacing:0.3em;
+text-transform:uppercase;
+white-space:nowrap;
+color:#1A1411;
+}
+.category-divider::before,.category-divider::after{
+content:’’;
+flex:1;
+height:1px;
+background:#1A1411;
+opacity:0.3;
+}
+
+/* ============= NOTE BOX ============= */
+.note-box{
+margin-top:32px;
+font-family:‘Cormorant Garamond’,serif;
+font-style:italic;
+font-size:18px;
+color:#3A2E26;
+max-width:600px;
+line-height:1.5;
+}
+
+/* ============= SEARCH BAR ============= */
+.search-bar{
+position:sticky;
+top:0;
+z-index:100;
+background-color:#F5F1EA;
+border-bottom:1px solid #1A1411;
+padding:16px 0;
+backdrop-filter:blur(10px);
+-webkit-backdrop-filter:blur(10px);
+background-color:rgba(245,241,234,0.96);
+}
+.search-wrap{
+max-width:1280px;
+margin:0 auto;
+padding:0 32px;
+display:flex;
+gap:16px;
+align-items:center;
+}
+.search-input{
+flex:1;
+padding:14px 20px;
+background:#FFFFFF;
+border:1px solid #1A1411;
+font-family:‘Inter’,sans-serif;
+font-size:15px;
+color:#1A1411;
+outline:none;
+transition:border-color 0.2s;
+border-radius:0;
+}
+.search-input::placeholder{color:#8A7A6F;font-style:italic}
+.search-input:focus{border-color:#5E1A2B;box-shadow:0 0 0 2px rgba(94,26,43,0.15)}
+.search-clear{
+font-family:‘JetBrains Mono’,monospace;
+font-size:11px;
+letter-spacing:0.15em;
+text-transform:uppercase;
+color:#5A4A3F;
+background:transparent;
+border:1px solid #1A1411;
+padding:14px 20px;
+cursor:pointer;
+transition:all 0.2s;
+white-space:nowrap;
+}
+.search-clear:hover{background:#1A1411;color:#F5F1EA}
+.search-stats{
+font-family:‘JetBrains Mono’,monospace;
+font-size:11px;
+letter-spacing:0.15em;
+text-transform:uppercase;
+color:#5A4A3F;
+white-space:nowrap;
+}
+.search-chips{
+max-width:1280px;
+margin:12px auto 0;
+padding:0 32px;
+display:flex;
+gap:8px;
+flex-wrap:wrap;
+}
+.chip{
+font-family:‘JetBrains Mono’,monospace;
+font-size:10px;
+letter-spacing:0.15em;
+text-transform:uppercase;
+background:transparent;
+border:1px solid rgba(26,20,17,0.3);
+color:#3A2E26;
+padding:6px 12px;
+cursor:pointer;
+transition:all 0.2s;
+}
+.chip:hover{border-color:#5E1A2B;color:#5E1A2B}
+.chip.active{background:#1A1411;color:#F5F1EA;border-color:#1A1411}
+
+/* Hide non-matching cards and sections */
+.combo-card.hidden,
+section.hidden,
+.category-divider.hidden{display:none !important}
+
+/* Highlight matching text */
+mark.match{
+background:rgba(240,225,58,0.5);
+color:#1A1411;
+padding:0 2px;
+border-radius:2px;
+}
+
+.no-results{
+display:none;
+text-align:center;
+padding:80px 32px;
+font-family:‘Cormorant Garamond’,serif;
+font-style:italic;
+font-size:24px;
+color:#5A4A3F;
+}
+.no-results.show{display:block}
+
+@media (max-width:768px){
+.container{padding:0 20px}
+section{padding:60px 0}
+.hero{padding:60px 0 40px;min-height:auto}
+.hero-circles{display:none}
+footer .container{grid-template-columns:1fr}
+.combo-grid{grid-template-columns:1fr 1fr;gap:16px}
+.combo-card-body{padding:14px 16px 18px}
+.combo-name{font-size:17px}
+.search-wrap{padding:0 20px;flex-wrap:wrap}
+.search-stats{width:100%;text-align:right;margin-top:4px}
+.search-chips{padding:0 20px}
+}
+@media (max-width:480px){
+.combo-grid{grid-template-columns:1fr}
+.palette-grid{grid-template-columns:repeat(3,1fr)}
+}
+</style>
+
+</head>
+<body>
+
+<header class="hero">
+  <div class="container">
+    <div class="hero-circles">
+      <span style="background:#5E1A2B"></span>
+      <span style="background:#0F3FCF"></span>
+      <span style="background:#3D195B"></span>
+      <span style="background:#000000"></span>
+      <span style="background:#F0E13A"></span>
+      <span style="background:#D8E1E8"></span>
+    </div>
+    <div class="hero-tag">Personal Color Guide / For Cesar</div>
+    <h1>Deep<br/>Winter <em>—</em><br/>The Codex.</h1>
+    <p class="hero-sub">A visual combination guide for the man whose colors are the colors of the night. Cool, deep, intense — built outfit by outfit, hex by hex.</p>
+    <div class="hero-meta">
+      <div><span>Subtype</span><strong>Deep / Dark Winter</strong></div>
+      <div><span>Aspect</span><strong>Cool · Deep · Intense</strong></div>
+      <div><span>Best Neutral</span><strong>True Black</strong></div>
+      <div><span>Avoid</span><strong>Warm · Muted · Pastel</strong></div>
+      <div><span>Combinations</span><strong>120+ outfits</strong></div>
+    </div>
+  </div>
+</header>
+
+<div class="search-bar">
+  <div class="search-wrap">
+    <input type="text" id="searchInput" class="search-input" placeholder="Search outfits, colors, occasions… (e.g. 'suits', 'burgundy', 'black trouser', 'date night')" autocomplete="off" />
+    <button class="search-clear" id="searchClear" type="button">Clear</button>
+    <span class="search-stats" id="searchStats"></span>
+  </div>
+  <div class="search-chips">
+    <button class="chip" data-filter="">All</button>
+    <button class="chip" data-filter="suit">Suits</button>
+    <button class="chip" data-filter="blazer">Blazers</button>
+    <button class="chip" data-filter="shirt">Shirts & Ties</button>
+    <button class="chip" data-filter="polo">Polos</button>
+    <button class="chip" data-filter="sweater">Sweaters</button>
+    <button class="chip" data-filter="trouser">Trousers</button>
+    <button class="chip" data-filter="jean">Jeans</button>
+    <button class="chip" data-filter="tee">Tees</button>
+    <button class="chip" data-filter="shorts">Shorts</button>
+    <button class="chip" data-filter="workout">Workout</button>
+    <button class="chip" data-filter="outerwear">Outerwear</button>
+    <button class="chip" data-filter="shoe">Shoes</button>
+  </div>
+</div>
+
+<div class="no-results" id="noResults">No outfits match that search. Try "burgundy" or "black trouser" or "summer."</div>
+
+<section class="toc">
+  <div class="container">
+    <div class="section-num">/ CONTENTS</div>
+    <h2 class="section-title">What's <em>inside.</em></h2>
+    <div class="toc-list">
+      <a class="toc-item" href="#palette"><span class="toc-num">01</span><span class="toc-name">Your Palette</span></a>
+      <a class="toc-item" href="#suits"><span class="toc-num">02</span><span class="toc-name">Suits & Tailoring</span></a>
+      <a class="toc-item" href="#blazers"><span class="toc-num">03</span><span class="toc-name">Blazer + Trouser Splits</span></a>
+      <a class="toc-item" href="#shirts"><span class="toc-num">04</span><span class="toc-name">Dress Shirts & Ties</span></a>
+      <a class="toc-item" href="#polos"><span class="toc-num">05</span><span class="toc-name">Polos & Knit Polos</span></a>
+      <a class="toc-item" href="#sweaters"><span class="toc-num">06</span><span class="toc-name">Sweaters & Knitwear</span></a>
+      <a class="toc-item" href="#trousers"><span class="toc-num">07</span><span class="toc-name">Trousers & Slacks</span></a>
+      <a class="toc-item" href="#jeans"><span class="toc-num">08</span><span class="toc-name">Jeans & Casual Pants</span></a>
+      <a class="toc-item" href="#tees"><span class="toc-num">09</span><span class="toc-name">Tees & Henleys</span></a>
+      <a class="toc-item" href="#shorts"><span class="toc-num">10</span><span class="toc-name">Shorts & Warm-Weather</span></a>
+      <a class="toc-item" href="#workout"><span class="toc-num">11</span><span class="toc-name">Workout & Athletic</span></a>
+      <a class="toc-item" href="#outerwear"><span class="toc-num">12</span><span class="toc-name">Jackets & Outerwear</span></a>
+      <a class="toc-item" href="#shoes"><span class="toc-num">13</span><span class="toc-name">Shoes by Outfit</span></a>
+      <a class="toc-item" href="#avoid"><span class="toc-num">14</span><span class="toc-name">Colors to Avoid</span></a>
+      <a class="toc-item" href="#rules"><span class="toc-num">15</span><span class="toc-name">Three Rules</span></a>
+    </div>
+  </div>
+</section>
+
+<section id="palette">
+  <div class="container">
+    <div class="section-num">/ 01 — THE PALETTE</div>
+    <h2 class="section-title">Every color, <em>by the hex.</em></h2>
+    <p class="section-intro">Your Maja Koziara analysis identified Deep Winter — cool, dark, saturated. These are the colors that work, organized so you can shop from your phone.</p>
+
+```
+<div class="palette-category">
+  <h3>Foundation Neutrals</h3>
+  <div class="palette-grid">
+    <div class="swatch-block light-text" style="background:#000000"><div class="swatch-info"><span class="name">True Black</span><span class="hex">#000000</span></div></div>
+    <div class="swatch-block light-text" style="background:#1A1411"><div class="swatch-info"><span class="name">Brown-Black</span><span class="hex">#1A1411</span></div></div>
+    <div class="swatch-block light-text" style="background:#36454F"><div class="swatch-info"><span class="name">Charcoal</span><span class="hex">#36454F</span></div></div>
+    <div class="swatch-block light-text" style="background:#2A3439"><div class="swatch-info"><span class="name">Gunmetal</span><span class="hex">#2A3439</span></div></div>
+    <div class="swatch-block light-text" style="background:#0E1A2B"><div class="swatch-info"><span class="name">Midnight Navy</span><span class="hex">#0E1A2B</span></div></div>
+    <div class="swatch-block light-text" style="background:#1B263B"><div class="swatch-info"><span class="name">Deep Navy</span><span class="hex">#1B263B</span></div></div>
+    <div class="swatch-block light-text" style="background:#8E8E93"><div class="swatch-info"><span class="name">Medium Grey</span><span class="hex">#8E8E93</span></div></div>
+    <div class="swatch-block dark-text" style="background:#C4C6C9"><div class="swatch-info"><span class="name">Light Cool Grey</span><span class="hex">#C4C6C9</span></div></div>
+    <div class="swatch-block dark-text" style="background:#D8E1E8"><div class="swatch-info"><span class="name">Ice Blue</span><span class="hex">#D8E1E8</span></div></div>
+    <div class="swatch-block dark-text" style="background:#FBFBFB"><div class="swatch-info"><span class="name">Pure White</span><span class="hex">#FBFBFB</span></div></div>
+  </div>
+</div>
+
+<div class="palette-category">
+  <h3>Jewel Tones — Your Signatures</h3>
+  <div class="palette-grid">
+    <div class="swatch-block light-text" style="background:#5E1A2B"><div class="swatch-info"><span class="name">Burgundy</span><span class="hex">#5E1A2B</span></div></div>
+    <div class="swatch-block light-text" style="background:#7A1F2C"><div class="swatch-info"><span class="name">Bright Burgundy</span><span class="hex">#7A1F2C</span></div></div>
+    <div class="swatch-block light-text" style="background:#4A0E13"><div class="swatch-info"><span class="name">Oxblood</span><span class="hex">#4A0E13</span></div></div>
+    <div class="swatch-block light-text" style="background:#9B111E"><div class="swatch-info"><span class="name">Ruby</span><span class="hex">#9B111E</span></div></div>
+    <div class="swatch-block light-text" style="background:#C8102E"><div class="swatch-info"><span class="name">True Blue-Red</span><span class="hex">#C8102E</span></div></div>
+    <div class="swatch-block light-text" style="background:#0F3FCF"><div class="swatch-info"><span class="name">Cobalt</span><span class="hex">#0F3FCF</span></div></div>
+    <div class="swatch-block light-text" style="background:#0F52BA"><div class="swatch-info"><span class="name">Sapphire</span><span class="hex">#0F52BA</span></div></div>
+    <div class="swatch-block light-text" style="background:#3D195B"><div class="swatch-info"><span class="name">Royal Purple</span><span class="hex">#3D195B</span></div></div>
+    <div class="swatch-block light-text" style="background:#3D1E83"><div class="swatch-info"><span class="name">Bright Purple</span><span class="hex">#3D1E83</span></div></div>
+    <div class="swatch-block light-text" style="background:#52213F"><div class="swatch-info"><span class="name">Plum</span><span class="hex">#52213F</span></div></div>
+    <div class="swatch-block light-text" style="background:#2D0A30"><div class="swatch-info"><span class="name">Aubergine</span><span class="hex">#2D0A30</span></div></div>
+    <div class="swatch-block light-text" style="background:#A2185A"><div class="swatch-info"><span class="name">Magenta</span><span class="hex">#A2185A</span></div></div>
+    <div class="swatch-block light-text" style="background:#9B2D5E"><div class="swatch-info"><span class="name">Pink Violet</span><span class="hex">#9B2D5E</span></div></div>
+    <div class="swatch-block light-text" style="background:#0B3B2E"><div class="swatch-info"><span class="name">Pine Green</span><span class="hex">#0B3B2E</span></div></div>
+    <div class="swatch-block light-text" style="background:#046307"><div class="swatch-info"><span class="name">Emerald</span><span class="hex">#046307</span></div></div>
+    <div class="swatch-block light-text" style="background:#00755E"><div class="swatch-info"><span class="name">True Emerald</span><span class="hex">#00755E</span></div></div>
+    <div class="swatch-block light-text" style="background:#114B5F"><div class="swatch-info"><span class="name">Deep Teal</span><span class="hex">#114B5F</span></div></div>
+  </div>
+</div>
+
+<div class="palette-category">
+  <h3>Ice Accents & Specials</h3>
+  <div class="palette-grid">
+    <div class="swatch-block dark-text" style="background:#EAD5D9"><div class="swatch-info"><span class="name">Ice Pink</span><span class="hex">#EAD5D9</span></div></div>
+    <div class="swatch-block dark-text" style="background:#D7D2DE"><div class="swatch-info"><span class="name">Ice Lavender</span><span class="hex">#D7D2DE</span></div></div>
+    <div class="swatch-block dark-text" style="background:#F0E13A"><div class="swatch-info"><span class="name">Bright Yellow</span><span class="hex">#F0E13A</span></div></div>
+    <div class="swatch-block light-text" style="background:#1E2A4A"><div class="swatch-info"><span class="name">Dark Indigo</span><span class="hex">#1E2A4A</span></div></div>
+    <div class="swatch-block light-text" style="background:#1A1F2E"><div class="swatch-info"><span class="name">Raw Black Denim</span><span class="hex">#1A1F2E</span></div></div>
+  </div>
+</div>
+```
+
+  </div>
+</section>
+
+<section id="suits">
+  <div class="container">
+    <div class="section-num">/ 02 — SUITS & TAILORING</div>
+    <h2 class="section-title">Suits, head <em>to toe.</em></h2>
+    <p class="section-intro">Eight base suits cover every formal-to-business-casual occasion. Layers shown top-down: jacket → shirt → tie → trousers → shoes.</p>
+
+```
+<div class="combo-grid">
+  <div class="combo-card">
+    <div class="outfit-stack">
+      <div class="layer" data-label="Jacket" style="background:#36454F"></div>
+      <div class="layer" data-label="Shirt" style="background:#FBFBFB"></div>
+      <div class="layer" data-label="Tie" style="background:#5E1A2B"></div>
+      <div class="layer" data-label="Trouser" style="background:#36454F"></div>
+      <div class="layer" data-label="Shoe" style="background:#0A0A0A"></div>
+    </div>
+    <div class="combo-card-body">
+      <div class="combo-num">SUIT 01 / BOARDROOM</div>
+      <div class="combo-name">The Charcoal Anchor</div>
+      <div class="combo-recipe"><strong>Charcoal</strong> two-piece, white shirt, burgundy tie, black Oxfords. The single most useful suit you own.</div>
+    </div>
+  </div>
+  <div class="combo-card">
+    <div class="outfit-stack">
+      <div class="layer" data-label="Jacket" style="background:#0E1A2B"></div>
+      <div class="layer" data-label="Shirt" style="background:#D8E1E8"></div>
+      <div class="layer" data-label="Tie" style="background:#4A0E13"></div>
+      <div class="layer" data-label="Trouser" style="background:#0E1A2B"></div>
+      <div class="layer" data-label="Shoe" style="background:#0A0A0A"></div>
+    </div>
+    <div class="combo-card-body">
+      <div class="combo-num">SUIT 02 / POWER</div>
+      <div class="combo-name">Midnight & Ice</div>
+      <div class="combo-recipe"><strong>Midnight navy</strong> suit, ice blue shirt, oxblood tie, black cap-toes.</div>
+    </div>
+  </div>
+  <div class="combo-card">
+    <div class="outfit-stack">
+      <div class="layer" data-label="Jacket" style="background:#000000"></div>
+      <div class="layer" data-label="Shirt" style="background:#FBFBFB"></div>
+      <div class="layer" data-label="Tie" style="background:#000000"></div>
+      <div class="layer" data-label="Trouser" style="background:#000000"></div>
+      <div class="layer" data-label="Shoe" style="background:#000000"></div>
+    </div>
+    <div class="combo-card-body">
+      <div class="combo-num">SUIT 03 / EVENING</div>
+      <div class="combo-name">Black on Black on White</div>
+      <div class="combo-recipe">Pure <strong>black</strong> suit, pure white shirt, black silk knit tie. Winter is the only season that earns this.</div>
+    </div>
+  </div>
+  <div class="combo-card">
+    <div class="outfit-stack">
+      <div class="layer" data-label="Jacket" style="background:#7A1F2C"></div>
+      <div class="layer" data-label="Shirt" style="background:#FBFBFB"></div>
+      <div class="layer" data-label="Tie" style="background:#0E1A2B"></div>
+      <div class="layer" data-label="Trouser" style="background:#7A1F2C"></div>
+      <div class="layer" data-label="Shoe" style="background:#4A0E13"></div>
+    </div>
+    <div class="combo-card-body">
+      <div class="combo-num">SUIT 04 / STATEMENT</div>
+      <div class="combo-name">Bright Burgundy</div>
+      <div class="combo-recipe"><strong>Bright burgundy</strong> suit, white shirt, midnight tie, oxblood loafers. Maja flagged as a signature.</div>
+    </div>
+  </div>
+  <div class="combo-card">
+    <div class="outfit-stack">
+      <div class="layer" data-label="Jacket" style="background:#0B3B2E"></div>
+      <div class="layer" data-label="Shirt" style="background:#FBFBFB"></div>
+      <div class="layer" data-label="Tie" style="background:#2D0A30"></div>
+      <div class="layer" data-label="Trouser" style="background:#0B3B2E"></div>
+      <div class="layer" data-label="Shoe" style="background:#0A0A0A"></div>
+    </div>
+    <div class="combo-card-body">
+      <div class="combo-num">SUIT 05 / OCCASION</div>
+      <div class="combo-name">Pine Green Three-Piece</div>
+      <div class="combo-recipe">Deep <strong>pine green</strong> suit, white shirt, aubergine tie. Wedding, holiday party.</div>
+    </div>
+  </div>
+  <div class="combo-card">
+    <div class="outfit-stack">
+      <div class="layer" data-label="Jacket" style="background:#0F3FCF"></div>
+      <div class="layer" data-label="Shirt" style="background:#FBFBFB"></div>
+      <div class="layer" data-label="Tie" style="background:#A2185A"></div>
+      <div class="layer" data-label="Trouser" style="background:#0F3FCF"></div>
+      <div class="layer" data-label="Shoe" style="background:#0A0A0A"></div>
+    </div>
+    <div class="combo-card-body">
+      <div class="combo-num">SUIT 06 / SUMMER</div>
+      <div class="combo-name">Cobalt Brilliance</div>
+      <div class="combo-recipe"><strong>Cobalt</strong> tropical wool suit, white shirt, magenta tie. Warm-weather Deep Winter.</div>
+    </div>
+  </div>
+  <div class="combo-card">
+    <div class="outfit-stack">
+      <div class="layer" data-label="Jacket" style="background:#36454F"></div>
+      <div class="layer" data-label="Shirt" style="background:#D8E1E8"></div>
+      <div class="layer" data-label="Tie" style="background:#0F3FCF"></div>
+      <div class="layer" data-label="Trouser" style="background:#36454F"></div>
+      <div class="layer" data-label="Shoe" style="background:#0A0A0A"></div>
+    </div>
+    <div class="combo-card-body">
+      <div class="combo-num">SUIT 07 / CLIENT</div>
+      <div class="combo-name">Charcoal & Cobalt</div>
+      <div class="combo-recipe">Charcoal suit, ice-blue shirt, cobalt tie. Approachable but sharp.</div>
+    </div>
+  </div>
+  <div class="combo-card">
+    <div class="outfit-stack">
+      <div class="layer" data-label="Jacket" style="background:#0E1A2B"></div>
+      <div class="layer" data-label="Shirt" style="background:#FBFBFB"></div>
+      <div class="layer" data-label="Tie" style="background:#046307"></div>
+      <div class="layer" data-label="Trouser" style="background:#0E1A2B"></div>
+      <div class="layer" data-label="Shoe" style="background:#4A0E13"></div>
+    </div>
+    <div class="combo-card-body">
+      <div class="combo-num">SUIT 08 / ACCENT</div>
+      <div class="combo-name">Navy with Emerald</div>
+      <div class="combo-recipe">Navy suit, white shirt, <strong>emerald</strong> tie, oxblood Derbies.</div>
+    </div>
+  </div>
+</div>
+```
+
+  </div>
+</section>
+
+<section id="blazers">
+  <div class="container">
+    <div class="section-num">/ 03 — BLAZER + TROUSER SPLITS</div>
+    <h2 class="section-title">Sport coats, <em>broken up.</em></h2>
+    <p class="section-intro">Splitting a jacket from its trousers triples your outfit count. Twelve high-contrast pairings.</p>
+    <div class="combo-grid">
+      <div class="combo-card"><div class="combo-stripes"><div style="background:#0E1A2B"></div><div style="background:#36454F"></div></div><div class="combo-card-body"><div class="combo-num">SPLIT 01</div><div class="combo-name">Midnight blazer · Charcoal trouser</div><div class="combo-recipe">Most versatile sport-coat pairing. White shirt for office, black knit for dinner.</div></div></div>
+      <div class="combo-card"><div class="combo-stripes"><div style="background:#36454F"></div><div style="background:#0E1A2B"></div></div><div class="combo-card-body"><div class="combo-num">SPLIT 02</div><div class="combo-name">Charcoal blazer · Navy trouser</div><div class="combo-recipe">Reverse the formula — slightly more relaxed. Great with ice-blue shirt.</div></div></div>
+      <div class="combo-card"><div class="combo-stripes"><div style="background:#7A1F2C"></div><div style="background:#36454F"></div></div><div class="combo-card-body"><div class="combo-num">SPLIT 03</div><div class="combo-name">Burgundy blazer · Charcoal trouser</div><div class="combo-recipe">Maja's headline recommendation. Cashmere or fine wool — never tweed.</div></div></div>
+      <div class="combo-card"><div class="combo-stripes"><div style="background:#0B3B2E"></div><div style="background:#0E1A2B"></div></div><div class="combo-card-body"><div class="combo-num">SPLIT 04</div><div class="combo-name">Pine blazer · Navy trouser</div><div class="combo-recipe">Analogous cool combination. Add black or oxblood loafers.</div></div></div>
+      <div class="combo-card"><div class="combo-stripes"><div style="background:#0B3B2E"></div><div style="background:#36454F"></div></div><div class="combo-card-body"><div class="combo-num">SPLIT 05</div><div class="combo-name">Pine blazer · Charcoal trouser</div><div class="combo-recipe">Deep forest with mid-grey — sophisticated, never preppy.</div></div></div>
+      <div class="combo-card"><div class="combo-stripes"><div style="background:#000000"></div><div style="background:#36454F"></div></div><div class="combo-card-body"><div class="combo-num">SPLIT 06</div><div class="combo-name">Black blazer · Charcoal trouser</div><div class="combo-recipe">Tonal cool darks. Pair with white tee for smart-casual.</div></div></div>
+      <div class="combo-card"><div class="combo-stripes"><div style="background:#0E1A2B"></div><div style="background:#8E8E93"></div></div><div class="combo-card-body"><div class="combo-num">SPLIT 07</div><div class="combo-name">Navy blazer · Light grey trouser</div><div class="combo-recipe">Maximum value contrast. Most flattering split in the palette.</div></div></div>
+      <div class="combo-card"><div class="combo-stripes"><div style="background:#36454F"></div><div style="background:#000000"></div></div><div class="combo-card-body"><div class="combo-num">SPLIT 08</div><div class="combo-name">Charcoal blazer · Black trouser</div><div class="combo-recipe">Slimming column-of-color trick. Modern and sleek.</div></div></div>
+      <div class="combo-card"><div class="combo-stripes"><div style="background:#3D195B"></div><div style="background:#000000"></div></div><div class="combo-card-body"><div class="combo-num">SPLIT 09</div><div class="combo-name">Royal Purple blazer · Black trouser</div><div class="combo-recipe">Evening event. Velvet works exceptionally well.</div></div></div>
+      <div class="combo-card"><div class="combo-stripes"><div style="background:#114B5F"></div><div style="background:#36454F"></div></div><div class="combo-card-body"><div class="combo-num">SPLIT 10</div><div class="combo-name">Deep Teal blazer · Charcoal trouser</div><div class="combo-recipe">Unexpected jewel-tone jacket that still reads professional.</div></div></div>
+      <div class="combo-card"><div class="combo-stripes"><div style="background:#0E1A2B"></div><div style="background:#000000"></div></div><div class="combo-card-body"><div class="combo-num">SPLIT 11</div><div class="combo-name">Navy blazer · Black trouser</div><div class="combo-recipe">Modern and high-contrast. Crisp white shirt.</div></div></div>
+      <div class="combo-card"><div class="combo-stripes"><div style="background:#2D0A30"></div><div style="background:#36454F"></div></div><div class="combo-card-body"><div class="combo-num">SPLIT 12</div><div class="combo-name">Aubergine blazer · Charcoal trouser</div><div class="combo-recipe">Deep eggplant — autumn vibes without warm tones.</div></div></div>
+    </div>
+  </div>
+</section>
+
+<section id="shirts">
+  <div class="container">
+    <div class="section-num">/ 04 — DRESS SHIRT + TIE</div>
+    <h2 class="section-title">Shirts <em>×</em> ties.</h2>
+    <p class="section-intro">Maja's report calls white "your best shirt color, with icy alternatives." 16 pairings that hold up under any of your suits.</p>
+    <div class="combo-grid">
+      <div class="combo-card"><div class="combo-stripes"><div style="background:#FBFBFB;border-right:1px solid #ddd"></div><div style="background:#5E1A2B"></div></div><div class="combo-card-body"><div class="combo-num">SHIRT+TIE 01</div><div class="combo-name">White × Burgundy</div><div class="combo-recipe">Universal. Works under every suit you own.</div></div></div>
+      <div class="combo-card"><div class="combo-stripes"><div style="background:#FBFBFB;border-right:1px solid #ddd"></div><div style="background:#0E1A2B"></div></div><div class="combo-card-body"><div class="combo-num">SHIRT+TIE 02</div><div class="combo-name">White × Midnight Navy</div><div class="combo-recipe">Quiet authority. Best with charcoal or grey suits.</div></div></div>
+      <div class="combo-card"><div class="combo-stripes"><div style="background:#FBFBFB;border-right:1px solid #ddd"></div><div style="background:#000000"></div></div><div class="combo-card-body"><div class="combo-num">SHIRT+TIE 03</div><div class="combo-name">White × Black Knit</div><div class="combo-recipe">Funeral, evening, board dinner. Silk knit, not satin.</div></div></div>
+      <div class="combo-card"><div class="combo-stripes"><div style="background:#D8E1E8"></div><div style="background:#0F3FCF"></div></div><div class="combo-card-body"><div class="combo-num">SHIRT+TIE 04</div><div class="combo-name">Ice Blue × Cobalt</div><div class="combo-recipe">Tonal blue. Sharp under charcoal.</div></div></div>
+      <div class="combo-card"><div class="combo-stripes"><div style="background:#D8E1E8"></div><div style="background:#4A0E13"></div></div><div class="combo-card-body"><div class="combo-num">SHIRT+TIE 05</div><div class="combo-name">Ice Blue × Oxblood</div><div class="combo-recipe">Cool shirt + cool red. Works with navy suits.</div></div></div>
+      <div class="combo-card"><div class="combo-stripes"><div style="background:#FBFBFB;border-right:1px solid #ddd"></div><div style="background:#046307"></div></div><div class="combo-card-body"><div class="combo-num">SHIRT+TIE 06</div><div class="combo-name">White × Emerald</div><div class="combo-recipe">Unexpected jewel-tone. Charcoal or navy suit.</div></div></div>
+      <div class="combo-card"><div class="combo-stripes"><div style="background:#D8E1E8"></div><div style="background:#5E1A2B"></div></div><div class="combo-card-body"><div class="combo-num">SHIRT+TIE 07</div><div class="combo-name">Ice Blue × Burgundy</div><div class="combo-recipe">High contrast in cool family. Year-round.</div></div></div>
+      <div class="combo-card"><div class="combo-stripes"><div style="background:#FBFBFB;border-right:1px solid #ddd"></div><div style="background:#9B111E"></div></div><div class="combo-card-body"><div class="combo-num">SHIRT+TIE 08</div><div class="combo-name">White × Ruby</div><div class="combo-recipe">"Power red" — but blue-based, never orange.</div></div></div>
+      <div class="combo-card"><div class="combo-stripes"><div style="background:#FBFBFB;border-right:1px solid #ddd"></div><div style="background:#3D195B"></div></div><div class="combo-card-body"><div class="combo-num">SHIRT+TIE 09</div><div class="combo-name">White × Royal Purple</div><div class="combo-recipe">Maja flagged purples as a dominant signature for you.</div></div></div>
+      <div class="combo-card"><div class="combo-stripes"><div style="background:#EAD5D9"></div><div style="background:#0E1A2B"></div></div><div class="combo-card-body"><div class="combo-num">SHIRT+TIE 10</div><div class="combo-name">Ice Pink × Midnight</div><div class="combo-recipe">Spring/summer. Cool pink, not peach.</div></div></div>
+      <div class="combo-card"><div class="combo-stripes"><div style="background:#D7D2DE"></div><div style="background:#2D0A30"></div></div><div class="combo-card-body"><div class="combo-num">SHIRT+TIE 11</div><div class="combo-name">Ice Lavender × Aubergine</div><div class="combo-recipe">Tonal purple. Holiday or anniversary dinner.</div></div></div>
+      <div class="combo-card"><div class="combo-stripes"><div style="background:#FBFBFB;border-right:1px solid #ddd"></div><div style="background:#A2185A"></div></div><div class="combo-card-body"><div class="combo-num">SHIRT+TIE 12</div><div class="combo-name">White × Magenta</div><div class="combo-recipe">Bright pink. Confidence move with charcoal.</div></div></div>
+      <div class="combo-card"><div class="combo-stripes"><div style="background:#FBFBFB;border-right:1px solid #ddd"></div><div style="background:#114B5F"></div></div><div class="combo-card-body"><div class="combo-num">SHIRT+TIE 13</div><div class="combo-name">White × Deep Teal</div><div class="combo-recipe">Cool blue-green. Pairs with grey suits.</div></div></div>
+      <div class="combo-card"><div class="combo-stripes"><div style="background:#D8E1E8"></div><div style="background:#2D0A30"></div></div><div class="combo-card-body"><div class="combo-num">SHIRT+TIE 14</div><div class="combo-name">Ice Blue × Aubergine</div><div class="combo-recipe">Cool jewel pairing — sophisticated.</div></div></div>
+      <div class="combo-card"><div class="combo-stripes"><div style="background:#FBFBFB;border-right:1px solid #ddd"></div><div style="background:#0B3B2E"></div></div><div class="combo-card-body"><div class="combo-num">SHIRT+TIE 15</div><div class="combo-name">White × Pine Green</div><div class="combo-recipe">Crisp & seasonal — Christmas-party tie.</div></div></div>
+      <div class="combo-card"><div class="combo-stripes"><div style="background:#D8E1E8"></div><div style="background:#9B2D5E"></div></div><div class="combo-card-body"><div class="combo-num">SHIRT+TIE 16</div><div class="combo-name">Ice Blue × Pink Violet</div><div class="combo-recipe">Soft cool + saturated cool. Wedding guest.</div></div></div>
+    </div>
+  </div>
+</section>
+
+<section id="polos">
+  <div class="container">
+    <div class="section-num">/ 05 — POLOS & KNIT POLOS</div>
+    <h2 class="section-title">Polo <em>+</em> bottom.</h2>
+    <p class="section-intro">Smart-casual gold. Knit polos especially — under blazers or solo with chinos.</p>
+    <div class="combo-grid">
+      <div class="combo-card"><div class="combo-stripes"><div style="background:#0E1A2B"></div><div style="background:#8E8E93"></div></div><div class="combo-card-body"><div class="combo-num">POLO 01</div><div class="combo-name">Navy polo · Light grey trouser</div><div class="combo-recipe">Most versatile combo. Knit polo + flannel trouser.</div></div></div>
+      <div class="combo-card"><div class="combo-stripes"><div style="background:#000000"></div><div style="background:#36454F"></div></div><div class="combo-card-body"><div class="combo-num">POLO 02</div><div class="combo-name">Black polo · Charcoal trouser</div><div class="combo-recipe">Sleek tonal cool. Add silver watch.</div></div></div>
+      <div class="combo-card"><div class="combo-stripes"><div style="background:#5E1A2B"></div><div style="background:#000000"></div></div><div class="combo-card-body"><div class="combo-num">POLO 03</div><div class="combo-name">Burgundy polo · Black chino</div><div class="combo-recipe">Your signature casual move. Loafers or white sneakers.</div></div></div>
+      <div class="combo-card"><div class="combo-stripes"><div style="background:#0B3B2E"></div><div style="background:#000000"></div></div><div class="combo-card-body"><div class="combo-num">POLO 04</div><div class="combo-name">Pine polo · Black chino</div><div class="combo-recipe">Cool earth without going warm. Black sneakers.</div></div></div>
+      <div class="combo-card"><div class="combo-stripes"><div style="background:#114B5F"></div><div style="background:#0E1A2B"></div></div><div class="combo-card-body"><div class="combo-num">POLO 05</div><div class="combo-name">Deep Teal polo · Navy chino</div><div class="combo-recipe">Analogous tonal blue. Brown-black suede loafers.</div></div></div>
+      <div class="combo-card"><div class="combo-stripes"><div style="background:#FBFBFB;border-right:1px solid #ddd"></div><div style="background:#0E1A2B"></div></div><div class="combo-card-body"><div class="combo-num">POLO 06</div><div class="combo-name">White polo · Navy chino</div><div class="combo-recipe">Crisp summer staple. Black belt, white sneakers.</div></div></div>
+      <div class="combo-card"><div class="combo-stripes"><div style="background:#0F3FCF"></div><div style="background:#8E8E93"></div></div><div class="combo-card-body"><div class="combo-num">POLO 07</div><div class="combo-name">Cobalt polo · Light grey chino</div><div class="combo-recipe">High-saturation jewel + cool neutral.</div></div></div>
+      <div class="combo-card"><div class="combo-stripes"><div style="background:#3D195B"></div><div style="background:#36454F"></div></div><div class="combo-card-body"><div class="combo-num">POLO 08</div><div class="combo-name">Royal Purple polo · Charcoal trouser</div><div class="combo-recipe">A jewel-tone you should own. Subtle but unmistakable.</div></div></div>
+      <div class="combo-card"><div class="combo-stripes"><div style="background:#046307"></div><div style="background:#000000"></div></div><div class="combo-card-body"><div class="combo-num">POLO 09</div><div class="combo-name">Emerald polo · Black trouser</div><div class="combo-recipe">Vivid cool green + black anchor. Statement-making.</div></div></div>
+      <div class="combo-card"><div class="combo-stripes"><div style="background:#C8102E"></div><div style="background:#000000"></div></div><div class="combo-card-body"><div class="combo-num">POLO 10</div><div class="combo-name">True Red polo · Black trouser</div><div class="combo-recipe">Saturday-night dinner energy. Blue-based red only.</div></div></div>
+      <div class="combo-card"><div class="combo-stripes"><div style="background:#0E1A2B"></div><div style="background:#1E2A4A"></div></div><div class="combo-card-body"><div class="combo-num">POLO 11</div><div class="combo-name">Navy polo · Dark indigo jeans</div><div class="combo-recipe">Tonal blue casual. Black Chelsea boots.</div></div></div>
+      <div class="combo-card"><div class="combo-stripes"><div style="background:#36454F"></div><div style="background:#1E2A4A"></div></div><div class="combo-card-body"><div class="combo-num">POLO 12</div><div class="combo-name">Charcoal polo · Dark indigo jeans</div><div class="combo-recipe">Effortless smart-casual. Add silver watch.</div></div></div>
+    </div>
+  </div>
+</section>
+
+<section id="sweaters">
+  <div class="container">
+    <div class="section-num">/ 06 — SWEATERS & KNITWEAR</div>
+    <h2 class="section-title">The knit <em>matrix.</em></h2>
+    <p class="section-intro">Crewnecks, V-necks, turtlenecks, quarter-zips. Every layer below works with the trousers/jeans paired beneath.</p>
+    <div class="combo-grid">
+      <div class="combo-card"><div class="combo-stripes"><div style="background:#5E1A2B"></div><div style="background:#1E2A4A"></div></div><div class="combo-card-body"><div class="combo-num">KNIT 01</div><div class="combo-name">Burgundy crewneck · Indigo jeans</div><div class="combo-recipe">The Deep Winter weekend uniform. Black or oxblood boots.</div></div></div>
+      <div class="combo-card"><div class="combo-stripes"><div style="background:#000000"></div><div style="background:#1E2A4A"></div></div><div class="combo-card-body"><div class="combo-num">KNIT 02</div><div class="combo-name">Black turtleneck · Indigo jeans</div><div class="combo-recipe">Adam Driver. Iconic Deep Winter casual.</div></div></div>
+      <div class="combo-card"><div class="combo-stripes"><div style="background:#0E1A2B"></div><div style="background:#36454F"></div></div><div class="combo-card-body"><div class="combo-num">KNIT 03</div><div class="combo-name">Navy V-neck · Charcoal trouser</div><div class="combo-recipe">Office-Friday classic. Layer over white shirt.</div></div></div>
+      <div class="combo-card"><div class="combo-stripes"><div style="background:#0B3B2E"></div><div style="background:#000000"></div></div><div class="combo-card-body"><div class="combo-num">KNIT 04</div><div class="combo-name">Pine cable-knit · Black jeans</div><div class="combo-recipe">Weekend brunch. Black Chelsea boots.</div></div></div>
+      <div class="combo-card"><div class="combo-stripes"><div style="background:#36454F"></div><div style="background:#FBFBFB;border-left:1px solid #ddd"></div></div><div class="combo-card-body"><div class="combo-num">KNIT 05</div><div class="combo-name">Charcoal shawl-collar · White tee</div><div class="combo-recipe">Layered casual. Add charcoal trouser or indigo jeans.</div></div></div>
+      <div class="combo-card"><div class="combo-stripes"><div style="background:#2D0A30"></div><div style="background:#8E8E93"></div></div><div class="combo-card-body"><div class="combo-num">KNIT 06</div><div class="combo-name">Aubergine crew · Light grey trouser</div><div class="combo-recipe">Maja-recommended value contrast. "Especially flattering."</div></div></div>
+      <div class="combo-card"><div class="combo-stripes"><div style="background:#00755E"></div><div style="background:#0E1A2B"></div></div><div class="combo-card-body"><div class="combo-num">KNIT 07</div><div class="combo-name">Emerald crew · Navy trouser</div><div class="combo-recipe">Cool jewel + cool neutral. Holiday-season hero.</div></div></div>
+      <div class="combo-card"><div class="combo-stripes"><div style="background:#3D195B"></div><div style="background:#000000"></div></div><div class="combo-card-body"><div class="combo-num">KNIT 08</div><div class="combo-name">Royal purple quarter-zip · Black trouser</div><div class="combo-recipe">Maja flagged purples & blues as your dominant family.</div></div></div>
+      <div class="combo-card"><div class="combo-stripes"><div style="background:#0E1A2B"></div><div style="background:#1E2A4A"></div></div><div class="combo-card-body"><div class="combo-num">KNIT 09</div><div class="combo-name">Navy turtleneck · Indigo jeans</div><div class="combo-recipe">Tonal cool blue. Layer under navy peacoat.</div></div></div>
+      <div class="combo-card"><div class="combo-stripes"><div style="background:#000000"></div><div style="background:#36454F"></div></div><div class="combo-card-body"><div class="combo-num">KNIT 10</div><div class="combo-name">Black cashmere · Charcoal trouser</div><div class="combo-recipe">Year-round staple. Wears under any blazer.</div></div></div>
+      <div class="combo-card"><div class="combo-stripes"><div style="background:#114B5F"></div><div style="background:#36454F"></div></div><div class="combo-card-body"><div class="combo-num">KNIT 11</div><div class="combo-name">Deep teal sweater · Charcoal trouser</div><div class="combo-recipe">Cool blue-green + cool grey. Confident Friday.</div></div></div>
+      <div class="combo-card"><div class="combo-stripes"><div style="background:#7A1F2C"></div><div style="background:#0E1A2B"></div></div><div class="combo-card-body"><div class="combo-num">KNIT 12</div><div class="combo-name">Bright burgundy quarter-zip · Navy chino</div><div class="combo-recipe">Maja's exact recommended styling for casual layering.</div></div></div>
+    </div>
+  </div>
+</section>
+
+<section id="trousers">
+  <div class="container">
+    <div class="section-num">/ 07 — TROUSERS & SLACKS</div>
+    <h2 class="section-title">Trousers, <em>by their tops.</em></h2>
+    <p class="section-intro">Five trouser colors anchor everything. Each shown with three top options.</p>
+
+```
+<div class="category-divider"><span class="label">Charcoal Trouser — The Workhorse</span></div>
+<div class="combo-grid">
+  <div class="combo-card"><div class="combo-stripes"><div style="background:#FBFBFB;border-right:1px solid #ddd"></div><div style="background:#36454F"></div></div><div class="combo-card-body"><div class="combo-num">TROUSER 01</div><div class="combo-name">+ White shirt</div><div class="combo-recipe">Default office look. Tuck in, black belt, black Oxfords.</div></div></div>
+  <div class="combo-card"><div class="combo-stripes"><div style="background:#5E1A2B"></div><div style="background:#36454F"></div></div><div class="combo-card-body"><div class="combo-num">TROUSER 02</div><div class="combo-name">+ Burgundy knit</div><div class="combo-recipe">Casual Friday. Untucked or half-tucked.</div></div></div>
+  <div class="combo-card"><div class="combo-stripes"><div style="background:#000000"></div><div style="background:#36454F"></div></div><div class="combo-card-body"><div class="combo-num">TROUSER 03</div><div class="combo-name">+ Black tee</div><div class="combo-recipe">Smart-casual evening. Add charcoal blazer.</div></div></div>
+</div>
+
+<div class="category-divider"><span class="label">Navy Trouser — The Flexible One</span></div>
+<div class="combo-grid">
+  <div class="combo-card"><div class="combo-stripes"><div style="background:#D8E1E8"></div><div style="background:#0E1A2B"></div></div><div class="combo-card-body"><div class="combo-num">TROUSER 04</div><div class="combo-name">+ Ice blue shirt</div><div class="combo-recipe">Tonal cool blue. Black or oxblood Derby shoes.</div></div></div>
+  <div class="combo-card"><div class="combo-stripes"><div style="background:#8E8E93"></div><div style="background:#0E1A2B"></div></div><div class="combo-card-body"><div class="combo-num">TROUSER 05</div><div class="combo-name">+ Light grey crew</div><div class="combo-recipe">Maja's exact "grey + navy" combo. Always works.</div></div></div>
+  <div class="combo-card"><div class="combo-stripes"><div style="background:#0B3B2E"></div><div style="background:#0E1A2B"></div></div><div class="combo-card-body"><div class="combo-num">TROUSER 06</div><div class="combo-name">+ Pine green polo</div><div class="combo-recipe">Analogous cool combination, weekend-appropriate.</div></div></div>
+</div>
+
+<div class="category-divider"><span class="label">Black Trouser — The Sharp One</span></div>
+<div class="combo-grid">
+  <div class="combo-card"><div class="combo-stripes"><div style="background:#FBFBFB;border-right:1px solid #ddd"></div><div style="background:#000000"></div></div><div class="combo-card-body"><div class="combo-num">TROUSER 07</div><div class="combo-name">+ White shirt</div><div class="combo-recipe">Maximum value contrast. Evening-ready.</div></div></div>
+  <div class="combo-card"><div class="combo-stripes"><div style="background:#0F3FCF"></div><div style="background:#000000"></div></div><div class="combo-card-body"><div class="combo-num">TROUSER 08</div><div class="combo-name">+ Cobalt polo</div><div class="combo-recipe">Saturated blue + black anchor. Cocktail event.</div></div></div>
+  <div class="combo-card"><div class="combo-stripes"><div style="background:#7A1F2C"></div><div style="background:#000000"></div></div><div class="combo-card-body"><div class="combo-num">TROUSER 09</div><div class="combo-name">+ Burgundy knit</div><div class="combo-recipe">Date night. Loafers or Chelsea boots.</div></div></div>
+</div>
+
+<div class="category-divider"><span class="label">Light Grey Trouser — The Summer Move</span></div>
+<div class="combo-grid">
+  <div class="combo-card"><div class="combo-stripes"><div style="background:#0E1A2B"></div><div style="background:#8E8E93"></div></div><div class="combo-card-body"><div class="combo-num">TROUSER 10</div><div class="combo-name">+ Navy blazer over white</div><div class="combo-recipe">Highest-contrast tailoring split.</div></div></div>
+  <div class="combo-card"><div class="combo-stripes"><div style="background:#2D0A30"></div><div style="background:#8E8E93"></div></div><div class="combo-card-body"><div class="combo-num">TROUSER 11</div><div class="combo-name">+ Aubergine knit</div><div class="combo-recipe">Holiday office party. Black Chelsea boots.</div></div></div>
+  <div class="combo-card"><div class="combo-stripes"><div style="background:#00755E"></div><div style="background:#8E8E93"></div></div><div class="combo-card-body"><div class="combo-num">TROUSER 12</div><div class="combo-name">+ Emerald polo</div><div class="combo-recipe">Spring/summer dinner. White sneakers acceptable.</div></div></div>
+</div>
+
+<div class="category-divider"><span class="label">Aubergine Trouser — The Wildcard</span></div>
+<div class="combo-grid">
+  <div class="combo-card"><div class="combo-stripes"><div style="background:#000000"></div><div style="background:#2D0A30"></div></div><div class="combo-card-body"><div class="combo-num">TROUSER 13</div><div class="combo-name">+ Black knit polo</div><div class="combo-recipe">Tonal dark cool. For evening.</div></div></div>
+  <div class="combo-card"><div class="combo-stripes"><div style="background:#FBFBFB;border-right:1px solid #ddd"></div><div style="background:#2D0A30"></div></div><div class="combo-card-body"><div class="combo-num">TROUSER 14</div><div class="combo-name">+ White Oxford</div><div class="combo-recipe">Highly distinctive. Black loafers only.</div></div></div>
+  <div class="combo-card"><div class="combo-stripes"><div style="background:#D7D2DE"></div><div style="background:#2D0A30"></div></div><div class="combo-card-body"><div class="combo-num">TROUSER 15</div><div class="combo-name">+ Ice lavender shirt</div><div class="combo-recipe">Tonal purple sophistication.</div></div></div>
+</div>
+```
+
+  </div>
+</section>
+
+<section id="jeans">
+  <div class="container">
+    <div class="section-num">/ 08 — JEANS & CASUAL PANTS</div>
+    <h2 class="section-title">Denim. <em>Dark only.</em></h2>
+    <p class="section-intro">Light wash, stone wash, and faded denim flatten Deep Winter contrast. Stick to dark indigo and raw/black.</p>
+
+```
+<div class="category-divider"><span class="label">Dark Indigo Jean — Your Default</span></div>
+<div class="combo-grid">
+  <div class="combo-card"><div class="combo-stripes"><div style="background:#FBFBFB;border-right:1px solid #ddd"></div><div style="background:#1E2A4A"></div></div><div class="combo-card-body"><div class="combo-num">JEAN 01</div><div class="combo-name">+ White tee</div><div class="combo-recipe">Year-round basic. Add black leather jacket.</div></div></div>
+  <div class="combo-card"><div class="combo-stripes"><div style="background:#000000"></div><div style="background:#1E2A4A"></div></div><div class="combo-card-body"><div class="combo-num">JEAN 02</div><div class="combo-name">+ Black tee</div><div class="combo-recipe">Cool tonal casual. Black sneakers or boots.</div></div></div>
+  <div class="combo-card"><div class="combo-stripes"><div style="background:#5E1A2B"></div><div style="background:#1E2A4A"></div></div><div class="combo-card-body"><div class="combo-num">JEAN 03</div><div class="combo-name">+ Burgundy henley</div><div class="combo-recipe">Cold-weather essential. Oxblood boots.</div></div></div>
+  <div class="combo-card"><div class="combo-stripes"><div style="background:#0E1A2B"></div><div style="background:#1E2A4A"></div></div><div class="combo-card-body"><div class="combo-num">JEAN 04</div><div class="combo-name">+ Navy crew sweater</div><div class="combo-recipe">Tonal blue layering — undisputed classic.</div></div></div>
+  <div class="combo-card"><div class="combo-stripes"><div style="background:#36454F"></div><div style="background:#1E2A4A"></div></div><div class="combo-card-body"><div class="combo-num">JEAN 05</div><div class="combo-name">+ Charcoal flannel shirt</div><div class="combo-recipe">Cool plaid weekend. Black boots.</div></div></div>
+  <div class="combo-card"><div class="combo-stripes"><div style="background:#0B3B2E"></div><div style="background:#1E2A4A"></div></div><div class="combo-card-body"><div class="combo-num">JEAN 06</div><div class="combo-name">+ Pine green Oxford</div><div class="combo-recipe">Untucked. White or black sneakers.</div></div></div>
+</div>
+
+<div class="category-divider"><span class="label">Black / Raw Jean — Your Sharpener</span></div>
+<div class="combo-grid">
+  <div class="combo-card"><div class="combo-stripes"><div style="background:#FBFBFB;border-right:1px solid #ddd"></div><div style="background:#1A1F2E"></div></div><div class="combo-card-body"><div class="combo-num">JEAN 07</div><div class="combo-name">+ White tee</div><div class="combo-recipe">Black leather jacket on top = Keanu energy.</div></div></div>
+  <div class="combo-card"><div class="combo-stripes"><div style="background:#000000"></div><div style="background:#1A1F2E"></div></div><div class="combo-card-body"><div class="combo-num">JEAN 08</div><div class="combo-name">+ Black turtleneck</div><div class="combo-recipe">Adam Driver. The full Deep Winter monolith.</div></div></div>
+  <div class="combo-card"><div class="combo-stripes"><div style="background:#7A1F2C"></div><div style="background:#1A1F2E"></div></div><div class="combo-card-body"><div class="combo-num">JEAN 09</div><div class="combo-name">+ Bright burgundy knit</div><div class="combo-recipe">Maja's specific casual recommendation.</div></div></div>
+  <div class="combo-card"><div class="combo-stripes"><div style="background:#00755E"></div><div style="background:#1A1F2E"></div></div><div class="combo-card-body"><div class="combo-num">JEAN 10</div><div class="combo-name">+ Emerald sweater</div><div class="combo-recipe">Confident jewel-tone moment.</div></div></div>
+  <div class="combo-card"><div class="combo-stripes"><div style="background:#0F3FCF"></div><div style="background:#1A1F2E"></div></div><div class="combo-card-body"><div class="combo-num">JEAN 11</div><div class="combo-name">+ Cobalt Oxford shirt</div><div class="combo-recipe">Tonal blue with high saturation.</div></div></div>
+  <div class="combo-card"><div class="combo-stripes"><div style="background:#36454F"></div><div style="background:#1A1F2E"></div></div><div class="combo-card-body"><div class="combo-num">JEAN 12</div><div class="combo-name">+ Charcoal henley</div><div class="combo-recipe">Tonal cool darks. Black boots.</div></div></div>
+</div>
+
+<div class="category-divider"><span class="label">Black & Navy Chinos</span></div>
+<div class="combo-grid">
+  <div class="combo-card"><div class="combo-stripes"><div style="background:#D8E1E8"></div><div style="background:#000000"></div></div><div class="combo-card-body"><div class="combo-num">CHINO 01</div><div class="combo-name">Black chino + Ice blue Oxford</div><div class="combo-recipe">Smart-casual office. Loafers.</div></div></div>
+  <div class="combo-card"><div class="combo-stripes"><div style="background:#5E1A2B"></div><div style="background:#000000"></div></div><div class="combo-card-body"><div class="combo-num">CHINO 02</div><div class="combo-name">Black chino + Burgundy polo</div><div class="combo-recipe">Date night. Black or oxblood loafers.</div></div></div>
+  <div class="combo-card"><div class="combo-stripes"><div style="background:#0B3B2E"></div><div style="background:#000000"></div></div><div class="combo-card-body"><div class="combo-num">CHINO 03</div><div class="combo-name">Black chino + Pine knit polo</div><div class="combo-recipe">Friday smart-casual. Black sneakers.</div></div></div>
+  <div class="combo-card"><div class="combo-stripes"><div style="background:#FBFBFB;border-right:1px solid #ddd"></div><div style="background:#0E1A2B"></div></div><div class="combo-card-body"><div class="combo-num">CHINO 04</div><div class="combo-name">Navy chino + White polo</div><div class="combo-recipe">Summer weekend. White sneakers, no socks.</div></div></div>
+  <div class="combo-card"><div class="combo-stripes"><div style="background:#7A1F2C"></div><div style="background:#0E1A2B"></div></div><div class="combo-card-body"><div class="combo-num">CHINO 05</div><div class="combo-name">Navy chino + Burgundy polo</div><div class="combo-recipe">Maja's exact pairing recommendation.</div></div></div>
+  <div class="combo-card"><div class="combo-stripes"><div style="background:#D8E1E8"></div><div style="background:#0E1A2B"></div></div><div class="combo-card-body"><div class="combo-num">CHINO 06</div><div class="combo-name">Navy chino + Ice blue Oxford</div><div class="combo-recipe">Tonal blue casual. Loafers.</div></div></div>
+</div>
+```
+
+  </div>
+</section>
+
+<section id="tees">
+  <div class="container">
+    <div class="section-num">/ 09 — TEES & HENLEYS</div>
+    <h2 class="section-title">The basics, <em>weaponized.</em></h2>
+    <p class="section-intro">Your t-shirt drawer should be ruthlessly cool-toned. No olive, no rust, no mustard, no tan.</p>
+    <div class="combo-grid">
+      <div class="combo-card"><div class="combo-stripes"><div style="background:#FBFBFB;border-right:1px solid #ddd"></div><div style="background:#1E2A4A"></div></div><div class="combo-card-body"><div class="combo-num">TEE 01</div><div class="combo-name">White tee · Indigo jeans</div><div class="combo-recipe">The platonic ideal. Add silver watch.</div></div></div>
+      <div class="combo-card"><div class="combo-stripes"><div style="background:#000000"></div><div style="background:#1A1F2E"></div></div><div class="combo-card-body"><div class="combo-num">TEE 02</div><div class="combo-name">Black tee · Black jeans</div><div class="combo-recipe">All-cool monolith. Black sneakers or boots.</div></div></div>
+      <div class="combo-card"><div class="combo-stripes"><div style="background:#36454F"></div><div style="background:#1E2A4A"></div></div><div class="combo-card-body"><div class="combo-num">TEE 03</div><div class="combo-name">Charcoal heather · Indigo</div><div class="combo-recipe">Quiet weekday casual.</div></div></div>
+      <div class="combo-card"><div class="combo-stripes"><div style="background:#5E1A2B"></div><div style="background:#1E2A4A"></div></div><div class="combo-card-body"><div class="combo-num">TEE 04</div><div class="combo-name">Burgundy tee · Indigo jeans</div><div class="combo-recipe">The "color" tee that always works.</div></div></div>
+      <div class="combo-card"><div class="combo-stripes"><div style="background:#0B3B2E"></div><div style="background:#1A1F2E"></div></div><div class="combo-card-body"><div class="combo-num">TEE 05</div><div class="combo-name">Forest henley · Black jeans</div><div class="combo-recipe">3 buttons open. Cold-weather casual.</div></div></div>
+      <div class="combo-card"><div class="combo-stripes"><div style="background:#0E1A2B"></div><div style="background:#8E8E93"></div></div><div class="combo-card-body"><div class="combo-num">TEE 06</div><div class="combo-name">Navy tee · Light grey shorts</div><div class="combo-recipe">Summer essential. White sneakers.</div></div></div>
+      <div class="combo-card"><div class="combo-stripes"><div style="background:#114B5F"></div><div style="background:#1E2A4A"></div></div><div class="combo-card-body"><div class="combo-num">TEE 07</div><div class="combo-name">Deep teal tee · Indigo jeans</div><div class="combo-recipe">Saturated cool weekend.</div></div></div>
+      <div class="combo-card"><div class="combo-stripes"><div style="background:#C8102E"></div><div style="background:#000000"></div></div><div class="combo-card-body"><div class="combo-num">TEE 08</div><div class="combo-name">Red tee · Black trouser</div><div class="combo-recipe">Concert/event night. Statement.</div></div></div>
+      <div class="combo-card"><div class="combo-stripes"><div style="background:#3D195B"></div><div style="background:#000000"></div></div><div class="combo-card-body"><div class="combo-num">TEE 09</div><div class="combo-name">Royal purple henley · Black jeans</div><div class="combo-recipe">Late-fall layer-piece.</div></div></div>
+      <div class="combo-card"><div class="combo-stripes"><div style="background:#0F3FCF"></div><div style="background:#8E8E93"></div></div><div class="combo-card-body"><div class="combo-num">TEE 10</div><div class="combo-name">Cobalt tee · Light grey shorts</div><div class="combo-recipe">Vivid summer combo.</div></div></div>
+      <div class="combo-card"><div class="combo-stripes"><div style="background:#FBFBFB;border-right:1px solid #ddd"></div><div style="background:#0E1A2B"></div></div><div class="combo-card-body"><div class="combo-num">TEE 11</div><div class="combo-name">White tee · Navy chino</div><div class="combo-recipe">Summer wedding-rehearsal default.</div></div></div>
+      <div class="combo-card"><div class="combo-stripes"><div style="background:#A2185A"></div><div style="background:#000000"></div></div><div class="combo-card-body"><div class="combo-num">TEE 12</div><div class="combo-name">Magenta tee · Black jeans</div><div class="combo-recipe">Concert-ready. Loud but on-palette.</div></div></div>
+    </div>
+  </div>
+</section>
+
+<section id="shorts">
+  <div class="container">
+    <div class="section-num">/ 10 — SHORTS & WARM-WEATHER</div>
+    <h2 class="section-title">Heat without <em>warm tones.</em></h2>
+    <p class="section-intro">Maja's note: "Add taupe and white for warm weather." Below — the only summer combinations that work.</p>
+    <div class="combo-grid">
+      <div class="combo-card"><div class="combo-stripes"><div style="background:#FBFBFB;border-right:1px solid #ddd"></div><div style="background:#0E1A2B"></div></div><div class="combo-card-body"><div class="combo-num">SHORTS 01</div><div class="combo-name">White polo · Navy shorts</div><div class="combo-recipe">Default summer uniform. White sneakers.</div></div></div>
+      <div class="combo-card"><div class="combo-stripes"><div style="background:#0E1A2B"></div><div style="background:#8E8E93"></div></div><div class="combo-card-body"><div class="combo-num">SHORTS 02</div><div class="combo-name">Navy tee · Light grey shorts</div><div class="combo-recipe">Cool inverse. Black sandals or sneakers.</div></div></div>
+      <div class="combo-card"><div class="combo-stripes"><div style="background:#5E1A2B"></div><div style="background:#36454F"></div></div><div class="combo-card-body"><div class="combo-num">SHORTS 03</div><div class="combo-name">Burgundy tee · Charcoal shorts</div><div class="combo-recipe">Beach-club energy without the resort warmth.</div></div></div>
+      <div class="combo-card"><div class="combo-stripes"><div style="background:#0F3FCF"></div><div style="background:#FBFBFB;border-left:1px solid #ddd"></div></div><div class="combo-card-body"><div class="combo-num">SHORTS 04</div><div class="combo-name">Cobalt tee · White shorts</div><div class="combo-recipe">High-saturation summer hero.</div></div></div>
+      <div class="combo-card"><div class="combo-stripes"><div style="background:#FBFBFB;border-right:1px solid #ddd"></div><div style="background:#000000"></div></div><div class="combo-card-body"><div class="combo-num">SHORTS 05</div><div class="combo-name">White linen shirt · Black shorts</div><div class="combo-recipe">Maximum contrast. Black slides.</div></div></div>
+      <div class="combo-card"><div class="combo-stripes"><div style="background:#114B5F"></div><div style="background:#8E8E93"></div></div><div class="combo-card-body"><div class="combo-num">SHORTS 06</div><div class="combo-name">Deep teal polo · Light grey shorts</div><div class="combo-recipe">Pool to dinner without changing.</div></div></div>
+      <div class="combo-card"><div class="combo-stripes"><div style="background:#D8E1E8"></div><div style="background:#0E1A2B"></div></div><div class="combo-card-body"><div class="combo-num">SHORTS 07</div><div class="combo-name">Ice blue shirt · Navy shorts</div><div class="combo-recipe">Tonal blue. Brown-black suede loafers.</div></div></div>
+      <div class="combo-card"><div class="combo-stripes"><div style="background:#000000"></div><div style="background:#FBFBFB;border-left:1px solid #ddd"></div></div><div class="combo-card-body"><div class="combo-num">SHORTS 08</div><div class="combo-name">Black tee · White shorts</div><div class="combo-recipe">Italian-coast summer. Black slides.</div></div></div>
+      <div class="combo-card"><div class="combo-stripes"><div style="background:#0B3B2E"></div><div style="background:#8E8E93"></div></div><div class="combo-card-body"><div class="combo-num">SHORTS 09</div><div class="combo-name">Pine polo · Light grey shorts</div><div class="combo-recipe">Cool earth, never warm. Golf-club ready.</div></div></div>
+    </div>
+  </div>
+</section>
+
+<section id="workout">
+  <div class="container">
+    <div class="section-num">/ 11 — WORKOUT & ATHLETIC</div>
+    <h2 class="section-title">Gym in <em>your</em> palette.</h2>
+    <p class="section-intro">Even your fasted Zone 2 sessions deserve cool-toned color choices. Black, navy, charcoal, with jewel-tone accents — never neon orange or warm grey.</p>
+    <div class="combo-grid">
+      <div class="combo-card"><div class="combo-stripes"><div style="background:#000000"></div><div style="background:#000000"></div></div><div class="combo-card-body"><div class="combo-num">GYM 01</div><div class="combo-name">All black</div><div class="combo-recipe">Black workout shirt + black shorts/joggers. Sleekest look.</div></div></div>
+      <div class="combo-card"><div class="combo-stripes"><div style="background:#0E1A2B"></div><div style="background:#36454F"></div></div><div class="combo-card-body"><div class="combo-num">GYM 02</div><div class="combo-name">Navy top · Charcoal shorts</div><div class="combo-recipe">Outdoor cardio go-to.</div></div></div>
+      <div class="combo-card"><div class="combo-stripes"><div style="background:#36454F"></div><div style="background:#000000"></div></div><div class="combo-card-body"><div class="combo-num">GYM 03</div><div class="combo-name">Charcoal tee · Black joggers</div><div class="combo-recipe">Lifting day standard.</div></div></div>
+      <div class="combo-card"><div class="combo-stripes"><div style="background:#5E1A2B"></div><div style="background:#000000"></div></div><div class="combo-card-body"><div class="combo-num">GYM 04</div><div class="combo-name">Burgundy tee · Black shorts</div><div class="combo-recipe">Color accent without going neon.</div></div></div>
+      <div class="combo-card"><div class="combo-stripes"><div style="background:#0F3FCF"></div><div style="background:#000000"></div></div><div class="combo-card-body"><div class="combo-num">GYM 05</div><div class="combo-name">Cobalt tank · Black shorts</div><div class="combo-recipe">Saturated cool blue. High-performance look.</div></div></div>
+      <div class="combo-card"><div class="combo-stripes"><div style="background:#FBFBFB;border-right:1px solid #ddd"></div><div style="background:#000000"></div></div><div class="combo-card-body"><div class="combo-num">GYM 06</div><div class="combo-name">White tee · Black shorts</div><div class="combo-recipe">High-contrast summer cardio.</div></div></div>
+      <div class="combo-card"><div class="combo-stripes"><div style="background:#00755E"></div><div style="background:#000000"></div></div><div class="combo-card-body"><div class="combo-num">GYM 07</div><div class="combo-name">Emerald tee · Black tights</div><div class="combo-recipe">Cool jewel accent for outdoor runs.</div></div></div>
+      <div class="combo-card"><div class="combo-stripes"><div style="background:#0E1A2B"></div><div style="background:#0E1A2B"></div></div><div class="combo-card-body"><div class="combo-num">GYM 08</div><div class="combo-name">All navy</div><div class="combo-recipe">Tonal blue. Black running shoes.</div></div></div>
+      <div class="combo-card"><div class="combo-stripes"><div style="background:#9B111E"></div><div style="background:#36454F"></div></div><div class="combo-card-body"><div class="combo-num">GYM 09</div><div class="combo-name">Ruby tee · Charcoal shorts</div><div class="combo-recipe">Cold-day outdoor run accent.</div></div></div>
+    </div>
+    <p class="note-box">Avoid in athletic wear: warm orange (Nike's "Total Orange"), neon yellow-green volt, warm taupe, brown leather accents. Stick to silver/white/black/cool blue runners.</p>
+  </div>
+</section>
+
+<section id="outerwear">
+  <div class="container">
+    <div class="section-num">/ 12 — JACKETS & OUTERWEAR</div>
+    <h2 class="section-title">What goes <em>on top.</em></h2>
+    <p class="section-intro">Every outerwear piece should be charcoal, black, or midnight navy — with one or two cool jewel-tone exceptions.</p>
+    <div class="combo-grid">
+      <div class="combo-card"><div class="combo-stripes"><div style="background:#36454F"></div><div style="background:#FBFBFB;border-left:1px solid #ddd"></div></div><div class="combo-card-body"><div class="combo-num">COAT 01</div><div class="combo-name">Charcoal overcoat · White shirt + tie</div><div class="combo-recipe">Over your charcoal or navy suit. Knee-length.</div></div></div>
+      <div class="combo-card"><div class="combo-stripes"><div style="background:#0E1A2B"></div><div style="background:#5E1A2B"></div></div><div class="combo-card-body"><div class="combo-num">COAT 02</div><div class="combo-name">Navy peacoat · Burgundy scarf</div><div class="combo-recipe">Cold-weather casual. Indigo jeans + boots.</div></div></div>
+      <div class="combo-card"><div class="combo-stripes"><div style="background:#000000"></div><div style="background:#FBFBFB;border-left:1px solid #ddd"></div></div><div class="combo-card-body"><div class="combo-num">COAT 03</div><div class="combo-name">Black leather jacket · White tee</div><div class="combo-recipe">Keanu Reeves territory. Indigo or black jeans.</div></div></div>
+      <div class="combo-card"><div class="combo-stripes"><div style="background:#36454F"></div><div style="background:#0B3B2E"></div></div><div class="combo-card-body"><div class="combo-num">COAT 04</div><div class="combo-name">Charcoal topcoat · Pine scarf</div><div class="combo-recipe">Jewel-tone scarf is the move with grey coats.</div></div></div>
+      <div class="combo-card"><div class="combo-stripes"><div style="background:#0E1A2B"></div><div style="background:#D8E1E8"></div></div><div class="combo-card-body"><div class="combo-num">COAT 05</div><div class="combo-name">Navy field jacket · Ice blue Oxford</div><div class="combo-recipe">Smart-casual fall. Indigo jeans, black boots.</div></div></div>
+      <div class="combo-card"><div class="combo-stripes"><div style="background:#000000"></div><div style="background:#5E1A2B"></div></div><div class="combo-card-body"><div class="combo-num">COAT 06</div><div class="combo-name">Black overcoat · Burgundy scarf</div><div class="combo-recipe">Most-photographed coat-and-scarf combo on Deep Winter men.</div></div></div>
+      <div class="combo-card"><div class="combo-stripes"><div style="background:#36454F"></div><div style="background:#000000"></div></div><div class="combo-card-body"><div class="combo-num">COAT 07</div><div class="combo-name">Charcoal shacket · Black turtleneck</div><div class="combo-recipe">Heavy wool overshirt — modern alternative to a blazer.</div></div></div>
+      <div class="combo-card"><div class="combo-stripes"><div style="background:#0E1A2B"></div><div style="background:#36454F"></div></div><div class="combo-card-body"><div class="combo-num">COAT 08</div><div class="combo-name">Navy bomber · Charcoal joggers</div><div class="combo-recipe">Athleisure that actually looks intentional.</div></div></div>
+    </div>
+  </div>
+</section>
+
+<section id="shoes">
+  <div class="container">
+    <div class="section-num">/ 13 — SHOES BY OUTFIT</div>
+    <h2 class="section-title">No warm <em>brown.</em> Ever.</h2>
+    <p class="section-intro">Cognac, tan, light brown, camel — these all undermine your contrast. Replace with black, oxblood, or brown-black/espresso.</p>
+    <div class="combo-grid">
+      <div class="combo-card"><div class="combo-stripes"><div style="background:#000000"></div><div style="background:#36454F"></div></div><div class="combo-card-body"><div class="combo-num">SHOE 01</div><div class="combo-name">Black calf Oxford</div><div class="combo-recipe">Suit · charcoal trouser · navy trouser. The most useful pair.</div></div></div>
+      <div class="combo-card"><div class="combo-stripes"><div style="background:#4A0E13"></div><div style="background:#0E1A2B"></div></div><div class="combo-card-body"><div class="combo-num">SHOE 02</div><div class="combo-name">Oxblood Derby / brogue</div><div class="combo-recipe">Navy suit · grey trouser · burgundy blazer. Your "color" dress shoe.</div></div></div>
+      <div class="combo-card"><div class="combo-stripes"><div style="background:#000000"></div><div style="background:#1E2A4A"></div></div><div class="combo-card-body"><div class="combo-num">SHOE 03</div><div class="combo-name">Black Chelsea boot</div><div class="combo-recipe">Jeans · chinos · casual trouser. Year-round workhorse.</div></div></div>
+      <div class="combo-card"><div class="combo-stripes"><div style="background:#FBFBFB;border-right:1px solid #ddd"></div><div style="background:#1E2A4A"></div></div><div class="combo-card-body"><div class="combo-num">SHOE 04</div><div class="combo-name">Optic white sneaker</div><div class="combo-recipe">Casual. Must be true white — never cream or off-white.</div></div></div>
+      <div class="combo-card"><div class="combo-stripes"><div style="background:#000000"></div><div style="background:#36454F"></div></div><div class="combo-card-body"><div class="combo-num">SHOE 05</div><div class="combo-name">Black leather sneaker</div><div class="combo-recipe">Smart-casual evening · dinner. Replaces brown loafer.</div></div></div>
+      <div class="combo-card"><div class="combo-stripes"><div style="background:#2B1B17"></div><div style="background:#0E1A2B"></div></div><div class="combo-card-body"><div class="combo-num">SHOE 06</div><div class="combo-name">Espresso suede loafer</div><div class="combo-recipe">The only "brown" you wear. Reads almost-black.</div></div></div>
+    </div>
+  </div>
+</section>
+
+<section id="avoid">
+  <div class="container">
+    <div class="section-num">/ 14 — DO NOT WEAR</div>
+    <h2 class="section-title">The forbidden <em>swatches.</em></h2>
+    <p class="section-intro">Maja's report calls these "too light, too warm." They mute your contrast and dull your features. Memorize them.</p>
+    <div class="avoid-block">
+      <h3>Warm Earth Tones</h3>
+      <div class="avoid-grid">
+        <div class="avoid-swatch" style="background:#D2691E"><span>Camel</span></div>
+        <div class="avoid-swatch" style="background:#C19A6B"><span>Tan</span></div>
+        <div class="avoid-swatch" style="background:#967259"><span>Khaki</span></div>
+        <div class="avoid-swatch" style="background:#FFDB58"><span>Mustard</span></div>
+        <div class="avoid-swatch" style="background:#B5651D"><span>Rust</span></div>
+        <div class="avoid-swatch" style="background:#FF7518"><span>Pumpkin</span></div>
+        <div class="avoid-swatch" style="background:#8B5A2B"><span>Choc Brown</span></div>
+        <div class="avoid-swatch" style="background:#808000"><span>Olive</span></div>
+      </div>
+      <h3>Warm Pastels & Muted Tones</h3>
+      <div class="avoid-grid">
+        <div class="avoid-swatch" style="background:#FFDAB9"><span>Peach</span></div>
+        <div class="avoid-swatch" style="background:#FF7F50"><span>Coral</span></div>
+        <div class="avoid-swatch" style="background:#FA8072"><span>Salmon</span></div>
+        <div class="avoid-swatch" style="background:#FFFACD"><span>Butter</span></div>
+        <div class="avoid-swatch" style="background:#98FB98"><span>Mint</span></div>
+        <div class="avoid-swatch" style="background:#C4A590"><span>Dusty Rose</span></div>
+        <div class="avoid-swatch" style="background:#9CAF88"><span>Sage</span></div>
+        <div class="avoid-swatch" style="background:#E0CDA9"><span>Cream</span></div>
+      </div>
+      <h3>Wrong Whites & Denim</h3>
+      <div class="avoid-grid">
+        <div class="avoid-swatch" style="background:#F5DEB3"><span>Wheat</span></div>
+        <div class="avoid-swatch" style="background:#FFFDD0"><span>Cream</span></div>
+        <div class="avoid-swatch" style="background:#A0B4C8"><span>Faded Denim</span></div>
+        <div class="avoid-swatch" style="background:#88A8C2"><span>Stonewash</span></div>
+      </div>
+      <p class="note-box">"Light total looks won't be flattering for you." — Your color report. Always anchor with at least one deep neutral.</p>
+    </div>
+  </div>
+</section>
+
+<section id="rules">
+  <div class="container">
+    <div class="section-num">/ 15 — THREE RULES</div>
+    <h2 class="section-title">Three rules to <em>live by.</em></h2>
+    <p class="section-intro">If you forget everything else, remember these. They will keep every outfit on-palette without thinking.</p>
+    <div class="principles">
+      <div class="principle">
+        <div class="principle-num">i.</div>
+        <h4>Always anchor near the face.</h4>
+        <p>The color closest to your jaw does the most work. If your suit is off-palette, put a Deep Winter color into the shirt, tie, or scarf nearest your face. Burgundy ties save warm-grey suits.</p>
+      </div>
+      <div class="principle">
+        <div class="principle-num">ii.</div>
+        <h4>Depth, not brightness.</h4>
+        <p>Your palette is high-contrast but not Bright Winter. Sapphire over electric blue. Ruby over fire-engine red. Saturated jewels over neons. The Adam Driver–Keanu Reeves register, never Spring-clear.</p>
+      </div>
+      <div class="principle">
+        <div class="principle-num">iii.</div>
+        <h4>Replace, don't just add.</h4>
+        <p>The biggest ROI on this analysis is swapping: tan shoes → oxblood; cream shirt → optic white; camel coat → charcoal; warm chocolate belt → black; yellow gold watch → silver; medium-wash jeans → dark indigo. One swap per week for ten weeks.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <div><h2>The colors of <em>the night.</em></h2></div>
+    <div class="sub">
+      Built for Cesar.<br>
+      Based on Maja Koziara's<br>
+      Deep Winter color analysis.<br>
+      120+ combinations across<br>
+      15 categories.
+    </div>
+    <div class="copy">© Personal Style Guide / Deep Winter Codex / 2026</div>
+  </div>
+</footer>
+
+<script>
+(function(){
+  const searchInput = document.getElementById('searchInput');
+  const searchClear = document.getElementById('searchClear');
+  const searchStats = document.getElementById('searchStats');
+  const noResults = document.getElementById('noResults');
+  const chips = document.querySelectorAll('.chip');
+
+  // All combo cards live in sections with IDs we care about
+  const allCards = Array.from(document.querySelectorAll('.combo-card'));
+  const allSections = Array.from(document.querySelectorAll('section[id]'));
+  const allDividers = Array.from(document.querySelectorAll('.category-divider'));
+
+  // Build a search index: each card -> its searchable text (lowercase) + section id
+  const cardData = allCards.map(card => {
+    const section = card.closest('section');
+    return {
+      el: card,
+      sectionId: section ? section.id : '',
+      text: (card.textContent || '').toLowerCase().replace(/\s+/g,' ').trim()
+    };
+  });
+
+  // Sections that should NEVER be hidden by search (palette, avoid, rules)
+  const protectedSections = new Set(['palette','avoid','rules']);
+
+  let activeChip = '';
+  let currentQuery = '';
+
+  function highlightMatches(card, query){
+    // Remove existing highlights
+    card.querySelectorAll('mark.match').forEach(m => {
+      const parent = m.parentNode;
+      parent.replaceChild(document.createTextNode(m.textContent), m);
+      parent.normalize();
+    });
+    if(!query || query.length < 2) return;
+
+    // Highlight in name and recipe only (skip combo-num)
+    const targets = card.querySelectorAll('.combo-name, .combo-recipe');
+    const re = new RegExp('('+query.replace(/[.*+?^${}()|[\]\\]/g,'\\$&')+')','gi');
+    targets.forEach(target => {
+      walkText(target, re);
+    });
+  }
+
+  function walkText(node, re){
+    if(node.nodeType === 3){ // text node
+      const text = node.textContent;
+      if(re.test(text)){
+        const span = document.createElement('span');
+        span.innerHTML = text.replace(re,'<mark class="match">$1</mark>');
+        node.parentNode.replaceChild(span, node);
+      }
+    } else if(node.nodeType === 1 && node.tagName !== 'MARK'){
+      Array.from(node.childNodes).forEach(child => walkText(child, re));
+    }
+  }
+
+  function applyFilters(){
+    const query = currentQuery.trim().toLowerCase();
+    const chipFilter = activeChip.trim().toLowerCase();
+
+    let visibleCount = 0;
+    const sectionsWithVisible = new Set();
+
+    cardData.forEach(({el, sectionId, text}) => {
+      let matches = true;
+
+      // Chip filter — match against section id
+      if(chipFilter){
+        matches = sectionId.includes(chipFilter) ||
+                  sectionId === chipFilter ||
+                  (chipFilter === 'shirt' && sectionId === 'shirts') ||
+                  (chipFilter === 'tee' && sectionId === 'tees') ||
+                  (chipFilter === 'jean' && sectionId === 'jeans') ||
+                  (chipFilter === 'shoe' && sectionId === 'shoes') ||
+                  (chipFilter === 'sweater' && sectionId === 'sweaters') ||
+                  (chipFilter === 'polo' && sectionId === 'polos') ||
+                  (chipFilter === 'trouser' && sectionId === 'trousers') ||
+                  (chipFilter === 'blazer' && sectionId === 'blazers') ||
+                  (chipFilter === 'suit' && sectionId === 'suits');
+      }
+
+      // Text query
+      if(matches && query){
+        matches = text.includes(query);
+      }
+
+      if(matches){
+        el.classList.remove('hidden');
+        visibleCount++;
+        sectionsWithVisible.add(sectionId);
+        highlightMatches(el, query);
+      } else {
+        el.classList.add('hidden');
+        highlightMatches(el, ''); // clear highlights
+      }
+    });
+
+    // Hide sections with no visible cards (except protected ones)
+    allSections.forEach(section => {
+      const sid = section.id;
+      if(protectedSections.has(sid)){
+        // When user is searching/filtering, hide protected sections too
+        if(query || chipFilter){
+          section.classList.add('hidden');
+        } else {
+          section.classList.remove('hidden');
+        }
+      } else if(sid === 'toc'){
+        // never hide TOC behavior - actually toc has no id, skip
+      } else {
+        if(sectionsWithVisible.has(sid)){
+          section.classList.remove('hidden');
+        } else if(query || chipFilter){
+          section.classList.add('hidden');
+        } else {
+          section.classList.remove('hidden');
+        }
+      }
+    });
+
+    // Hide TOC, footer when actively filtering
+    const toc = document.querySelector('section.toc');
+    if(toc){
+      if(query || chipFilter) toc.classList.add('hidden');
+      else toc.classList.remove('hidden');
+    }
+
+    // Hide category dividers if no visible cards follow them in same grid
+    allDividers.forEach(div => {
+      let next = div.nextElementSibling;
+      let hasVisible = false;
+      if(next && next.classList.contains('combo-grid')){
+        hasVisible = Array.from(next.children).some(c => !c.classList.contains('hidden'));
+      }
+      if(hasVisible) div.classList.remove('hidden');
+      else div.classList.add('hidden');
+    });
+
+    // Stats
+    if(query || chipFilter){
+      searchStats.textContent = visibleCount + ' / ' + cardData.length + ' outfits';
+      noResults.classList.toggle('show', visibleCount === 0);
+    } else {
+      searchStats.textContent = '';
+      noResults.classList.remove('show');
+    }
+  }
+
+  searchInput.addEventListener('input', e => {
+    currentQuery = e.target.value;
+    applyFilters();
+  });
+
+  searchClear.addEventListener('click', () => {
+    searchInput.value = '';
+    currentQuery = '';
+    activeChip = '';
+    chips.forEach(c => c.classList.remove('active'));
+    chips[0].classList.add('active');
+    applyFilters();
+    searchInput.focus();
+  });
+
+  chips.forEach(chip => {
+    chip.addEventListener('click', () => {
+      chips.forEach(c => c.classList.remove('active'));
+      chip.classList.add('active');
+      activeChip = chip.dataset.filter;
+      applyFilters();
+    });
+  });
+
+  // Default state: "All" chip active
+  chips[0].classList.add('active');
+})();
+</script>
+
+</body>
+</html>
